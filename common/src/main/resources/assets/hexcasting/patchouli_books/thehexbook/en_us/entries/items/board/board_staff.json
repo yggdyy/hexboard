@@ -1,0 +1,31 @@
+{
+  "name": "item.hexboard.board_staff",
+  "category": "hexcasting:items/board",
+  "icon": "hexboard:board_staff",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.board_staff.title",
+      "text": "page.hexboard.board_staff.0"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "hexboard:board_staff"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.board_staff.modes_title",
+      "text": "page.hexboard.board_staff.1"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.board_staff.operation_title",
+      "text": "page.hexboard.board_staff.2"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.board_staff.hud_title",
+      "text": "page.hexboard.board_staff.3"
+    }
+  ]
+}

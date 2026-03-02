@@ -1,0 +1,22 @@
+{
+  "name": "page.hexboard.patchouli_integration.title",
+  "category": "hexcasting:items/board",
+  "icon": "minecraft:book",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.patchouli_integration.overview_title",
+      "text": "page.hexboard.patchouli_integration.0"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.patchouli_integration.pattern_lookup_title",
+      "text": "page.hexboard.patchouli_integration.1"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.patchouli_integration.direct_placement_title",
+      "text": "page.hexboard.patchouli_integration.2"
+    }
+  ]
+}

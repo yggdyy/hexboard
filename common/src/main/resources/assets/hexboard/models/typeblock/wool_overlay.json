@@ -1,0 +1,15 @@
+{
+  "textures": {
+    "0": "hexcasting:item/thought_knot_overlay",
+    "particle": "hexcasting:item/thought_knot_overlay"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 0],
+      "faces": {
+        "south": {"uv": [0, 0, 16, 16], "texture": "#0", "tintindex": 0}
+      }
+    }
+  ]
+}

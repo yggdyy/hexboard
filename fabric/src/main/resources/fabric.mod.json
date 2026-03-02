@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "hexboard",
+  "version": "${version}",
+  "name": "Hex Board",
+  "description": "A Hexcasting addon provides a board system to help writing hex.",
+  "authors": [
+    "yggdyy_"
+  ],
+  "contributors": [
+  ],
+  "contact": {
+    "sources": ""
+  },
+  "license": "MIT",
+  "icon": "assets/hexboard/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "pub.pigeon.yggdyy.hexboard.fabric.HexBoardFabric"
+    ],
+    "client": [
+      "pub.pigeon.yggdyy.hexboard.fabric.client.HexBoardFabricClient"
+    ],
+    "modmenu": [
+      "pub.pigeon.yggdyy.hexboard.fabric.client.HexBoardModMenu"
+    ]
+  },
+  "mixins": [
+    "hexboard.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "~1.20.1",
+    "architectury": ">=9.2.14",
+    "hexcasting": "*"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "page.hexboard.board.0",
+  "category": "hexcasting:items/board",
+  "icon": "hexboard:board",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.board.1",
+      "text": "page.hexboard.board.2"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "hexboard:board",
+      "text": "page.hexboard.board.4"
+    }
+  ]
+}

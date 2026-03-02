@@ -1,0 +1,26 @@
+{
+  "name": "item.hexboard.wool_typeblock",
+  "category": "hexcasting:items/board",
+  "icon": "hexboard:wool_typeblock",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.wool_typeblock.title",
+      "text": "page.hexboard.wool_typeblock.0"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "hexboard:wool_typeblock"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.wool_typeblock.usage_title",
+      "text": "page.hexboard.wool_typeblock.1"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "page.hexboard.wool_typeblock.integration_title",
+      "text": "page.hexboard.wool_typeblock.3"
+    }
+  ]
+}

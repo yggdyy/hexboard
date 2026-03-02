@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "pub.pigeon.yggdyy.hexboard.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+    "UseOnContextAccessor",
+    "AbstractPatternComponentMixin"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

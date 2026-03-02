@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "hexcasting:focus"
+    },
+    {
+      "item": "hexcasting:staff/edified"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "hexboard:board_staff",
+    "count": 1
+  }
+}
