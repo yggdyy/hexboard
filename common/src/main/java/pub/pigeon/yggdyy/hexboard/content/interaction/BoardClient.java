@@ -235,7 +235,7 @@ public class BoardClient {
             case WEST:
                 stack.mulPose(new Quaternionf().rotateY((float) -Math.PI / 2F));
                 break;
-        };
+        }
         stack.translate(-0.5, 0.25, z);
         stack.translate(i1 % 4 * 0.25, -((i1 / 4) * 0.25), 0);
         VertexConsumer consumer = source.getBuffer(RenderType.debugQuads());

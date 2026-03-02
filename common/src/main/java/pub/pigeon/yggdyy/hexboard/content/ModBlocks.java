@@ -13,8 +13,6 @@ import pub.pigeon.yggdyy.hexboard.HexBoard;
 import pub.pigeon.yggdyy.hexboard.content.board.BoardBlock;
 import pub.pigeon.yggdyy.hexboard.content.board.BoardBlockEntity;
 
-import java.util.Set;
-
 public class ModBlocks {
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(HexBoard.MOD_ID, Registries.BLOCK);
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(HexBoard.MOD_ID, Registries.ITEM);
