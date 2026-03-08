@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pub.pigeon.yggdyy.hexboard.content.ModBlocks;
 import pub.pigeon.yggdyy.hexboard.content.ModC2SHandlers;
+import pub.pigeon.yggdyy.hexboard.content.ModIotaTypes;
 import pub.pigeon.yggdyy.hexboard.content.ModItems;
 import pub.pigeon.yggdyy.hexboard.content.interaction.load.Loaders;
 import pub.pigeon.yggdyy.hexboard.content.interaction.operation.Operations;
@@ -27,6 +28,7 @@ public final class HexBoard {
         ModC2SHandlers.init();
         Operations.init();
         Loaders.init();
+        ModIotaTypes.init();
     }
     public static ResourceLocation modLoc(String path) {
         return new ResourceLocation(MOD_ID, path);

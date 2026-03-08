@@ -4,7 +4,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
+import pub.pigeon.yggdyy.hexboard.content.typeblock.renderers.LapisTypeblockRenderer;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.renderers.QuartzTypeblockRenderer;
+import pub.pigeon.yggdyy.hexboard.content.typeblock.renderers.RedstoneTypeblockRenderer;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.renderers.WoolTypeblockRenderer;
 
 import java.util.List;
@@ -14,7 +16,9 @@ public class ModModels {
     public static final List<ResourceLocation> IDS = List.of(
             QuartzTypeblockRenderer.MODEL_ID,
             WoolTypeblockRenderer.BASE_ID,
-            WoolTypeblockRenderer.OVERLAY_ID
+            WoolTypeblockRenderer.OVERLAY_ID,
+            LapisTypeblockRenderer.MODEL_ID,
+            RedstoneTypeblockRenderer.MODEL_ID
     );
     public static Map<ResourceLocation, BakedModel> CUSTOMS = null;
     @NotNull

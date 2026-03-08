@@ -7,9 +7,13 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import pub.pigeon.yggdyy.hexboard.content.board.BoardBlockEntity;
+import pub.pigeon.yggdyy.hexboard.content.typeblock.items.LapisTypeblockItem;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.items.QuartzTypeblockItem;
+import pub.pigeon.yggdyy.hexboard.content.typeblock.items.RedstoneTypeblockItem;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.items.WoolTypeblockItem;
+import pub.pigeon.yggdyy.hexboard.content.typeblock.renderers.LapisTypeblockRenderer;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.renderers.QuartzTypeblockRenderer;
+import pub.pigeon.yggdyy.hexboard.content.typeblock.renderers.RedstoneTypeblockRenderer;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.renderers.WoolTypeblockRenderer;
 
 import java.util.HashMap;
@@ -29,5 +33,7 @@ public class TypeblockRenderers {
     public static void init() {
         register(QuartzTypeblockItem.ID, new QuartzTypeblockRenderer());
         register(WoolTypeblockItem.ID, new WoolTypeblockRenderer());
+        register(LapisTypeblockItem.ID, new LapisTypeblockRenderer());
+        register(RedstoneTypeblockItem.ID, new RedstoneTypeblockRenderer());
     }
 }

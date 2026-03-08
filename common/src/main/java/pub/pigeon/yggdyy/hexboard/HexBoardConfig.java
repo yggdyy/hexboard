@@ -24,6 +24,12 @@ public class HexBoardConfig{
         @ConfigEntry.Category(value = "board")
         @ConfigEntry.ColorPicker
         public int quartzTypeblockPatternColor = 0xfecbe6;
+        @ConfigEntry.Category(value = "board")
+        @ConfigEntry.ColorPicker
+        public int lapisTypeblockPatternColor = 0xFFFFFF;
+        @ConfigEntry.Category(value = "board")
+        @ConfigEntry.ColorPicker
+        public int redstoneTypeblockPatternColor = 0xFFFFFF;
         @ConfigEntry.Category(value = "hud")
         public int hudLineHeight = 10;
         @ConfigEntry.Category(value = "hud")
@@ -43,6 +49,6 @@ public class HexBoardConfig{
         @ConfigEntry.ColorPicker
         public int hudInfoWoolTypeblockColor = 0xFFFFFF;
         @ConfigEntry.Category(value = "resolve")
-        public int maxResolvedIota = (int) 1e5;
+        public int maxResolvedIota = 2048;
     }
 }

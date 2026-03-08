@@ -14,6 +14,8 @@ public class Loaders {
     public static final List<ILoader> LOADERS = new ArrayList<>();
     public static void init() {
         LOADERS.add(new PatternLoader());
+        LOADERS.add(new MacroDefineLoader());
+        LOADERS.add(new MacroCallLoader());
         LOADERS.add(new OtherLoader());
     }
 }

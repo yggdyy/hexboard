@@ -1,3 +1,6 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.22'
+}
 repositories {
     maven {
         url "https://maven.blamejared.com"
@@ -6,6 +9,7 @@ repositories {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
+    mavenCentral()
 }
 
 architectury {
@@ -23,4 +27,15 @@ dependencies {
     modApi "me.shedaniel.cloth:cloth-config:${rootProject.cloth_config_version}"
     //compileOnly "vazkii.patchouli:Patchouli-xplat:$minecraft_version-$patchouli_version-SNAPSHOT"
     compileOnly ("maven.modrinth:patchouli:${minecraft_version}-${patchouli_version}-forge")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }

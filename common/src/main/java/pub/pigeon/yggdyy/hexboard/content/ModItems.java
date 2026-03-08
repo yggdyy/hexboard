@@ -10,7 +10,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import pub.pigeon.yggdyy.hexboard.HexBoard;
 import pub.pigeon.yggdyy.hexboard.content.interaction.staff.BoardStaffItem;
+import pub.pigeon.yggdyy.hexboard.content.typeblock.items.LapisTypeblockItem;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.items.QuartzTypeblockItem;
+import pub.pigeon.yggdyy.hexboard.content.typeblock.items.RedstoneTypeblockItem;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.items.WoolTypeblockItem;
 
 public class ModItems {
@@ -27,7 +29,12 @@ public class ModItems {
                     () -> new ItemStack(ModBlocks.BOARD_ITEM.get())
             )
     );
-    public static final RegistrySupplier<QuartzTypeblockItem> QUARTZ_TYPEBLOCK = ITEMS.register("quartz_typeblock", () -> new QuartzTypeblockItem(new Item.Properties().arch$tab(DEFAULT_TAB)));
-    public static final RegistrySupplier<WoolTypeblockItem> WOOL_TYPEBLOCK = ITEMS.register("wool_typeblock", () -> new WoolTypeblockItem(new Item.Properties().arch$tab(DEFAULT_TAB)));
-    public static final RegistrySupplier<BoardStaffItem> BOARD_STAFF = ITEMS.register("board_staff", () -> new BoardStaffItem(new Item.Properties().stacksTo(1).arch$tab(DEFAULT_TAB)));
+    public static Item.Properties defaultProperties() {
+        return new Item.Properties().arch$tab(DEFAULT_TAB);
+    }
+    public static final RegistrySupplier<QuartzTypeblockItem> QUARTZ_TYPEBLOCK = ITEMS.register("quartz_typeblock", () -> new QuartzTypeblockItem(defaultProperties()));
+    public static final RegistrySupplier<WoolTypeblockItem> WOOL_TYPEBLOCK = ITEMS.register("wool_typeblock", () -> new WoolTypeblockItem(defaultProperties()));
+    public static final RegistrySupplier<LapisTypeblockItem> LAPIS_TYPEBLOCK = ITEMS.register("lapis_typeblock", () -> new LapisTypeblockItem(defaultProperties()));
+    public static final RegistrySupplier<RedstoneTypeblockItem> REDSTONE_TYPEBLOCK = ITEMS.register("redstone_typeblock", () -> new RedstoneTypeblockItem(defaultProperties()));
+    public static final RegistrySupplier<BoardStaffItem> BOARD_STAFF = ITEMS.register("board_staff", () -> new BoardStaffItem(defaultProperties().stacksTo(1)));
 }
