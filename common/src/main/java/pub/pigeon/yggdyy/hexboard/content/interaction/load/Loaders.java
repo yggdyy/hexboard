@@ -18,4 +18,19 @@ public class Loaders {
         LOADERS.add(new MacroCallLoader());
         LOADERS.add(new OtherLoader());
     }
+    public static void load(Iterable<Iota> toLoad, List<ItemStack> toAdd) throws Exception {
+        for(Iota iota : toLoad) {
+            boolean flag = false;
+            for(Loaders.ILoader loader : Loaders.LOADERS) {
+                if(loader.canApply(iota)) {
+                    loader.apply(toAdd, iota);
+                    flag = true;
+                    break;
+                }
+            }
+            if(!flag) {
+                throw new BadIotaException(iota);
+            }
+        }
+    }
 }

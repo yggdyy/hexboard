@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import pub.pigeon.yggdyy.hexboard.HexBoard;
 import pub.pigeon.yggdyy.hexboard.content.board.BoardInstance;
 import pub.pigeon.yggdyy.hexboard.content.interaction.resolve.BoardResolveException;
-import pub.pigeon.yggdyy.hexboard.content.typeblock.items.TypeblockItem;
+import pub.pigeon.yggdyy.hexboard.content.interaction.resolve.ResolveHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,12 +43,13 @@ public class ResolveOperation extends Operation{
             try {
                 List<Iota> resolved = new ArrayList<>();
                 ServerLevel level = (ServerLevel) board.mainEntity.getLevel();
-                for(int i = left; i <= right; ++i) {
+                /*for(int i = left; i <= right; ++i) {
                     if(!board.slots.get(i).getStack().isEmpty() && board.slots.get(i).getStack().getItem() instanceof TypeblockItem item) {
                         if(literal) item.literalResolve(level, board, resolved, board.slots.get(i).getStack(), i);
                         else item.resolve(level, board, resolved, board.slots.get(i).getStack(), i);
                     }
-                }
+                }*/
+                ResolveHandler.resolve(board, level, left, right, resolved, literal);
                 ListIota res = new ListIota(resolved);
                 List<ItemStack> hands = List.of(player.getMainHandItem(), player.getOffhandItem());
                 for(ItemStack stack : hands) {

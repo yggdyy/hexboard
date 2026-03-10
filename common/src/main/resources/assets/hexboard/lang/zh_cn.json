@@ -50,7 +50,12 @@
   "key.hexboard.staffmoderesolve": "解析",
   "key.hexboard.staffmoderesolveliteral": "字面解析",
   "tab.hexboard.default": "HexBoard",
-
+  "mishap.hexboard.bad_operation": "执行排字板操作时出现错误，罪魁祸首是: %s, %s",
+  "hexcasting.action.hexboard:load": "粉笔之策略",
+  "hexcasting.action.hexboard:delete": "板擦之策略",
+  "hexcasting.action.hexboard:resolve": "学生之策略",
+  "hexcasting.action.hexboard:literal_resolve": "笔记之策略",
+  "hexcasting.action.hexboard:move": "助教之策略",
 
   "ai.hexboard": "以下内容由AI生成！",
 

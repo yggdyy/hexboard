@@ -1,5 +1,6 @@
 package pub.pigeon.yggdyy.hexboard.forge;
 
+import at.petrak.hexcasting.common.lib.HexRegistries;
 import dev.architectury.platform.forge.EventBuses;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
@@ -9,11 +10,14 @@ import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.registries.RegisterEvent;
 import pub.pigeon.yggdyy.hexboard.HexBoard;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import pub.pigeon.yggdyy.hexboard.HexBoardClient;
+import pub.pigeon.yggdyy.hexboard.content.ModIotaTypes;
 import pub.pigeon.yggdyy.hexboard.content.ModModels;
+import pub.pigeon.yggdyy.hexboard.content.ModPatterns;
 import pub.pigeon.yggdyy.hexboard.content.interaction.BoardClient;
 import pub.pigeon.yggdyy.hexboard.content.interaction.staff.StaffModes;
 
@@ -25,6 +29,14 @@ public final class HexBoardForge {
     public HexBoardForge(FMLJavaModLoadingContext context) {
         EventBuses.registerModEventBus(HexBoard.MOD_ID, context.getModEventBus());
         HexBoard.init();
+        context.getModEventBus().addListener((RegisterEvent event) -> {
+            if(event.getRegistryKey().equals(HexRegistries.ACTION)) {
+                ModPatterns.init();
+            }
+            if(event.getRegistryKey().equals(HexRegistries.IOTA_TYPE)) {
+                ModIotaTypes.init();
+            }
+        });
     }
     @Mod.EventBusSubscriber(modid = HexBoard.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents

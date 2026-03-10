@@ -14,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import pub.pigeon.yggdyy.hexboard.HexBoard;
 import pub.pigeon.yggdyy.hexboard.content.board.BoardInstance;
-import pub.pigeon.yggdyy.hexboard.content.interaction.load.BadIotaException;
 import pub.pigeon.yggdyy.hexboard.content.interaction.load.BoardLoadException;
 import pub.pigeon.yggdyy.hexboard.content.interaction.load.Loaders;
 
@@ -58,7 +57,7 @@ public class LoadOperation extends Operation{
             Iota root = IotaType.deserialize(rootTag, level);
             Iterable<Iota> toLoad = (root instanceof ListIota listIota)? listIota.getList() : List.of(root);
             List<ItemStack> toAdd = new ArrayList<>();
-            for(Iota iota : toLoad) {
+            /*for(Iota iota : toLoad) {
                 boolean flag = false;
                 for(Loaders.ILoader loader : Loaders.LOADERS) {
                     if(loader.canApply(iota)) {
@@ -70,7 +69,8 @@ public class LoadOperation extends Operation{
                 if(!flag) {
                     throw new BadIotaException(iota);
                 }
-            }
+            }*/
+            Loaders.load(toLoad, toAdd);
             AddOperation addOperation = new AddOperation(toAdd, startIdx);
             if(simulate) {
                 return addOperation.operate(board, player, simulate);
