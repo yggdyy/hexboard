@@ -1,17 +1,23 @@
 {
-  "name": "page.hexboard.board.0",
+  "name": "block.hexboard.board",
   "category": "hexcasting:items/board",
   "icon": "hexboard:board",
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "page.hexboard.board.1",
-      "text": "page.hexboard.board.2"
+      "text": "page.hexboard.board.0"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "hexboard:board",
-      "text": "page.hexboard.board.4"
+      "recipe": "hexboard:board"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.2"
     }
   ]
 }

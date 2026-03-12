@@ -5,7 +5,6 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "page.hexboard.quartz_typeblock.title",
       "text": "page.hexboard.quartz_typeblock.0"
     },
     {
@@ -14,13 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "title": "page.hexboard.quartz_typeblock.usage_title",
       "text": "page.hexboard.quartz_typeblock.1"
-    },
-    {
-      "type": "patchouli:text",
-      "title": "page.hexboard.quartz_typeblock.integration_title",
-      "text": "page.hexboard.quartz_typeblock.2"
     }
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "name": "item.hexboard.redstone_typeblock",
+  "category": "hexcasting:items/board",
+  "icon": "hexboard:redstone_typeblock",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.redstone_typeblock.0"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.redstone_typeblock.1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.redstone_typeblock.2"
+    }
+  ]
+}

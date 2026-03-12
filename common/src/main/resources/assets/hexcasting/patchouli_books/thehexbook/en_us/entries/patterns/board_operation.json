@@ -1,0 +1,53 @@
+{
+  "name": "entry.hexboard.board_operation",
+  "category": "hexcasting:patterns",
+  "icon": "hexboard:board_staff",
+  "sortnum": 0,
+  "advancement": "hexcasting:root",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board_operation.0"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexboard:load",
+      "anchor": "hexboard:load",
+      "input": "vector, number, any/list",
+      "output": "",
+      "text": "page.hexboard.board_operation.load"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexboard:delete",
+      "anchor": "hexboard:delete",
+      "input": "vector, number, number",
+      "output": "",
+      "text": "page.hexboard.board_operation.delete"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexboard:move",
+      "anchor": "hexboard:move",
+      "input": "vector, number, number, number",
+      "output": "",
+      "text": "page.hexboard.board_operation.move"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexboard:resolve",
+      "anchor": "hexboard:resolve",
+      "input": "vector, number, number",
+      "output": "list",
+      "text": "page.hexboard.board_operation.resolve"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexboard:literal_resolve",
+      "anchor": "hexboard:literal_resolve",
+      "input": "vector, number, number",
+      "output": "list",
+      "text": "page.hexboard.board_operation.literal_resolve"
+    }
+  ]
+}

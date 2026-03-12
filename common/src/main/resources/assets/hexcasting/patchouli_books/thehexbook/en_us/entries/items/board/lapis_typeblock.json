@@ -1,0 +1,15 @@
+{
+  "name": "item.hexboard.lapis_typeblock",
+  "category": "hexcasting:items/board",
+  "icon": "hexboard:lapis_typeblock",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.lapis_typeblock.0"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.lapis_typeblock.1"
+    }
+  ]
+}
