@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "TWT",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "hexboard:quartz_typeblock"
+    },
+    "W": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "result": {
+    "item": "hexboard:lapis_typeblock",
+    "count": 8
+  }
+}
