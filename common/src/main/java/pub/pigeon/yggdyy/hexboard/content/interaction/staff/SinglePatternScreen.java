@@ -6,7 +6,9 @@ import at.petrak.hexcasting.api.casting.math.HexDir;
 import at.petrak.hexcasting.api.casting.math.HexPattern;
 import at.petrak.hexcasting.api.mod.HexConfig;
 import at.petrak.hexcasting.client.render.RenderLib;
+import at.petrak.hexcasting.client.sound.GridSoundInstance;
 import at.petrak.hexcasting.common.lib.HexAttributes;
+import at.petrak.hexcasting.common.lib.HexSounds;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -14,9 +16,14 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ShaderInstance;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec2;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 
 import java.util.ArrayList;
@@ -26,11 +33,15 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 public class SinglePatternScreen extends Screen {
+    @Nullable
+    private final GridSoundInstance soundInstance;
+    private final RandomSource random = SoundInstance.createUnseededRandom();
     public final Consumer<HexPattern> callback;
     public PatternDrawState drawState = new PatternDrawState.BetweenPatterns();
     public SinglePatternScreen(Consumer<HexPattern> callback) {
         super(Component.translatable("screen.hexboard.single_pattern"));
         this.callback = callback;
+        soundInstance = (Minecraft.getInstance().player == null) ? null : new GridSoundInstance(Minecraft.getInstance().player);
     }
     public boolean drawStart(double x, double y) {
         double mx = Mth.clamp(x, 0.0, width);
@@ -38,6 +49,7 @@ public class SinglePatternScreen extends Screen {
         if(drawState instanceof PatternDrawState.BetweenPatterns) {
             HexCoord coord = pxToCoord(new Vec2((float) mx, (float) my));
             drawState = new PatternDrawState.JustStarted(coord);
+            playDrawSound();
         }
         return false;
     }
@@ -89,6 +101,7 @@ public class SinglePatternScreen extends Screen {
                         }
                     }
                 }
+                playDrawSound();
             }
         }
         return false;
@@ -134,7 +147,20 @@ public class SinglePatternScreen extends Screen {
         }
         return drawEnd();
     }
-
+    private void playDrawSound() {
+        if(soundInstance != null) {
+            Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(
+                    HexSounds.ADD_TO_PATTERN,
+                    SoundSource.PLAYERS,
+                    0.25F,
+                    1F,
+                    random,
+                    soundInstance.getX(),
+                    soundInstance.getY(),
+                    soundInstance.getZ()
+            ));
+        }
+    }
     @Override
     public void render(GuiGraphics graphics, int x, int y, float f) {
         super.render(graphics, x, y, f);
