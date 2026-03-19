@@ -40,6 +40,8 @@ dependencies {
     modImplementation("net.fabricmc:fabric-language-kotlin:1.13.9+kotlin.2.3.10")
     modApi "me.shedaniel.cloth:cloth-config:${rootProject.cloth_config_version}"
 
+    modImplementation("maven.modrinth:hexcessible:0.3.0")
+
     common(project(path: ':common', configuration: 'namedElements')) {transitive = false}
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 }

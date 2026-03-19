@@ -6,6 +6,7 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
@@ -24,13 +25,13 @@ public class CopyMode implements StaffModes.IMode {
     int left, right;
     int color;
     @Override
-    public void click() {
+    public void click(InteractionHand hand) {
         if(Minecraft.getInstance().hitResult instanceof BlockHitResult hit) {
             BoardClient.updateSelect(hit);
         }
     }
     @Override
-    public void shiftClick() {
+    public void shiftClick(InteractionHand hand) {
         if(BoardClient.board != null) {
             int l = Math.min(BoardClient.left, BoardClient.right), r = Math.max(BoardClient.left, BoardClient.right);
             int t = BoardClient.target;

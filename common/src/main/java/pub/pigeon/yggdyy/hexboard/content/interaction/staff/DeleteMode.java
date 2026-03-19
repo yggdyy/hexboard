@@ -3,6 +3,7 @@ package pub.pigeon.yggdyy.hexboard.content.interaction.staff;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
@@ -16,13 +17,13 @@ import java.util.List;
 public class DeleteMode implements StaffModes.IMode{
     public static final Component DISPLAY = Component.translatable("staffmode.hexboard.delete");
     @Override
-    public void click() {
+    public void click(InteractionHand hand) {
         if(Minecraft.getInstance().hitResult instanceof BlockHitResult hit) {
             BoardClient.updateSelect(hit);
         }
     }
     @Override
-    public void shiftClick() {
+    public void shiftClick(InteractionHand hand) {
         int left = Math.min(BoardClient.left, BoardClient.right);
         int right = Math.max(BoardClient.left, BoardClient.right);
         int target = BoardClient.target;

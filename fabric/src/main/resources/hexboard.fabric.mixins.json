@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "pub.pigeon.yggdyy.hexboard.fabric.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "plugin": "pub.pigeon.yggdyy.hexboard.fabric.HexBoardFabricMixinPlugin",
+  "client": [
+    "SinglePatternScreenMixin$hexcessible"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -3,6 +3,7 @@ package pub.pigeon.yggdyy.hexboard.content.interaction.staff;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 import pub.pigeon.yggdyy.hexboard.content.ModKeyMappings;
@@ -18,13 +19,13 @@ public class ResolveMode implements StaffModes.IMode {
         this.literal = literal;
     }
     @Override
-    public void click() {
+    public void click(InteractionHand hand) {
         if(Minecraft.getInstance().hitResult instanceof BlockHitResult hit) {
             BoardClient.updateSelect(hit);
         }
     }
     @Override
-    public void shiftClick() {
+    public void shiftClick(InteractionHand hand) {
         if(BoardClient.board != null) {
             ResolveOperation operation = new ResolveOperation(BoardClient.left, BoardClient.right, literal);
             if(operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {

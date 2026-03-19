@@ -6,6 +6,7 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
 import pub.pigeon.yggdyy.hexboard.HexBoardConfig;
@@ -17,8 +18,8 @@ import java.util.List;
 public class StaffModes {
     public static double scroll = 0;
     public interface IMode {
-        void click();
-        void shiftClick();
+        void click(InteractionHand hand);
+        void shiftClick(InteractionHand hand);
         Component display();
         default void tickCritical() {
 

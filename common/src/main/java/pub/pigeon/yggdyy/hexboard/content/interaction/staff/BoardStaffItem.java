@@ -17,9 +17,9 @@ public class BoardStaffItem extends ItemFocus {
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         if(level.isClientSide) {
             if(player.isShiftKeyDown() || (BoardClient.staffMode.getTriggerKey() != null && BoardClient.staffMode.getTriggerKey().isDown())) {
-                BoardClient.staffMode.shiftClick();
+                BoardClient.staffMode.shiftClick(interactionHand);
             } else {
-                BoardClient.staffMode.click();
+                BoardClient.staffMode.click(interactionHand);
             }
             return InteractionResultHolder.success(player.getItemInHand(interactionHand));
         }

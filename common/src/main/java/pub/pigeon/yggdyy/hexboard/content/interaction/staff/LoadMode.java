@@ -3,6 +3,7 @@ package pub.pigeon.yggdyy.hexboard.content.interaction.staff;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import org.jetbrains.annotations.Nullable;
 import pub.pigeon.yggdyy.hexboard.content.ModKeyMappings;
 import pub.pigeon.yggdyy.hexboard.content.interaction.BoardClient;
@@ -12,11 +13,11 @@ import pub.pigeon.yggdyy.hexboard.content.interaction.operation.Operation;
 public class LoadMode implements StaffModes.IMode {
     public static final Component DISPLAY = Component.translatable("staffmode.hexboard.load");
     @Override
-    public void click() {
+    public void click(InteractionHand hand) {
 
     }
     @Override
-    public void shiftClick() {
+    public void shiftClick(InteractionHand hand) {
         if(BoardClient.board != null) {
             LoadOperation operation = new LoadOperation(BoardClient.target);
             if(operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
