@@ -17,13 +17,13 @@ import java.util.List;
 public class DeleteMode implements StaffModes.IMode{
     public static final Component DISPLAY = Component.translatable("staffmode.hexboard.delete");
     @Override
-    public void click(InteractionHand hand) {
+    public void rightClick(InteractionHand hand) {
         if(Minecraft.getInstance().hitResult instanceof BlockHitResult hit) {
             BoardClient.updateSelect(hit);
         }
     }
     @Override
-    public void shiftClick(InteractionHand hand) {
+    public void leftClick(InteractionHand hand) {
         int left = Math.min(BoardClient.left, BoardClient.right);
         int right = Math.max(BoardClient.left, BoardClient.right);
         int target = BoardClient.target;

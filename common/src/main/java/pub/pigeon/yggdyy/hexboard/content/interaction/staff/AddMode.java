@@ -20,7 +20,7 @@ public class AddMode implements StaffModes.IMode{
     public static SinglePatternScreen screen = null;
     public static final Component DISPLAY = Component.translatable("staffmode.hexboard.add");
     @Override
-    public void click(InteractionHand hand) {
+    public void rightClick(InteractionHand hand) {
         if(BoardClient.target > -1 && BoardClient.board != null) {
             if(screen == null) {
                 screen = new SinglePatternScreen((scr, pat) -> {
@@ -39,8 +39,8 @@ public class AddMode implements StaffModes.IMode{
         }
     }
     @Override
-    public void shiftClick(InteractionHand hand) {
-        click(hand);
+    public void leftClick(InteractionHand hand) {
+        rightClick(hand);
     }
     @Override
     public Component display() {

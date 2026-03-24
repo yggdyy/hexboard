@@ -19,13 +19,13 @@ public class ResolveMode implements StaffModes.IMode {
         this.literal = literal;
     }
     @Override
-    public void click(InteractionHand hand) {
+    public void rightClick(InteractionHand hand) {
         if(Minecraft.getInstance().hitResult instanceof BlockHitResult hit) {
             BoardClient.updateSelect(hit);
         }
     }
     @Override
-    public void shiftClick(InteractionHand hand) {
+    public void leftClick(InteractionHand hand) {
         if(BoardClient.board != null) {
             ResolveOperation operation = new ResolveOperation(BoardClient.left, BoardClient.right, literal);
             if(operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {

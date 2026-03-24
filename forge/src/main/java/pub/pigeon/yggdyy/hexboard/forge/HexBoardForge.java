@@ -9,11 +9,11 @@ import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegisterEvent;
 import pub.pigeon.yggdyy.hexboard.HexBoard;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import pub.pigeon.yggdyy.hexboard.HexBoardClient;
 import pub.pigeon.yggdyy.hexboard.content.ModIotaTypes;
 import pub.pigeon.yggdyy.hexboard.content.ModModels;
@@ -55,6 +55,7 @@ public final class HexBoardForge {
                     BoardClient.renderWorldlyInfo(e.getPoseStack(), Minecraft.getInstance().renderBuffers().bufferSource(), e.getPartialTick(), e.getCamera());
                 }
             });
+            MinecraftForge.registerConfigScreen(HexBoardClient::getConfigScreen);
         }
         @SubscribeEvent
         public static void onModelRegister(ModelEvent.RegisterAdditional event) {

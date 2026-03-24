@@ -1,5 +1,7 @@
 # Hex Board
 
+[Modrinth](https://modrinth.com/mod/hexboard) | [Github](https://github.com/yggdyy/hexboard)  
+
 Hex Board is an addon for Hex Casting (Minecraft 1.20.1) that introduces an in-world board workflow for composing and editing hex patterns.
 
 In short, this mod adds:

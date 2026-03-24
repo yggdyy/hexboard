@@ -13,17 +13,17 @@ import pub.pigeon.yggdyy.hexboard.content.interaction.operation.Operation;
 public class LoadMode implements StaffModes.IMode {
     public static final Component DISPLAY = Component.translatable("staffmode.hexboard.load");
     @Override
-    public void click(InteractionHand hand) {
-
-    }
-    @Override
-    public void shiftClick(InteractionHand hand) {
+    public void rightClick(InteractionHand hand) {
         if(BoardClient.board != null) {
             LoadOperation operation = new LoadOperation(BoardClient.target);
             if(operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
                 BoardClient.sendOperation(operation);
             }
         }
+    }
+    @Override
+    public void leftClick(InteractionHand hand) {
+        rightClick(hand);
     }
     @Override
     public Component display() {

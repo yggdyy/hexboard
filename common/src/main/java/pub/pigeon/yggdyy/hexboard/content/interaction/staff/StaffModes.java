@@ -18,8 +18,18 @@ import java.util.List;
 public class StaffModes {
     public static double scroll = 0;
     public interface IMode {
-        void click(InteractionHand hand);
-        void shiftClick(InteractionHand hand);
+        default void rightClick(InteractionHand hand){
+
+        }
+        default void shiftRightClick(InteractionHand hand) {
+            BoardClient.reset();
+        }
+        default void leftClick(InteractionHand hand) {
+
+        }
+        default void shiftLeftClick(InteractionHand hand) {
+            leftClick(hand);
+        }
         Component display();
         default void tickCritical() {
 

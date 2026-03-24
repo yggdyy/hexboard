@@ -25,13 +25,13 @@ public class CopyMode implements StaffModes.IMode {
     int left, right;
     int color;
     @Override
-    public void click(InteractionHand hand) {
+    public void rightClick(InteractionHand hand) {
         if(Minecraft.getInstance().hitResult instanceof BlockHitResult hit) {
             BoardClient.updateSelect(hit);
         }
     }
     @Override
-    public void shiftClick(InteractionHand hand) {
+    public void leftClick(InteractionHand hand) {
         if(BoardClient.board != null) {
             int l = Math.min(BoardClient.left, BoardClient.right), r = Math.max(BoardClient.left, BoardClient.right);
             int t = BoardClient.target;

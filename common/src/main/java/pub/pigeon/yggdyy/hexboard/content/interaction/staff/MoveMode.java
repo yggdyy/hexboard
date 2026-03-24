@@ -21,19 +21,31 @@ public class MoveMode implements StaffModes.IMode {
     int left, right;
     int color;
     @Override
-    public void click(InteractionHand hand) {
+    public void rightClick(InteractionHand hand) {
         if(Minecraft.getInstance().hitResult instanceof BlockHitResult hit) {
             BoardClient.updateSelect(hit);
         }
     }
     @Override
-    public void shiftClick(InteractionHand hand) {
+    public void leftClick(InteractionHand hand) {
         if(BoardClient.board != null) {
-            MoveOperation operation = new MoveOperation(BoardClient.left, BoardClient.right, BoardClient.target);
-            if(operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
-                BoardClient.sendOperation(operation);
-                BoardClient.left = operation.target;
-                BoardClient.right = operation.target + operation.right - operation.left;
+            if(BoardClient.left >= 0 && BoardClient.right >= 0) {
+                MoveOperation operation = new MoveOperation(BoardClient.left, BoardClient.right, BoardClient.target);
+                if (operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
+                    BoardClient.sendOperation(operation);
+                    BoardClient.left = operation.target;
+                    BoardClient.right = operation.target + operation.right - operation.left;
+                }
+            } else if(BoardClient.target >= -1 && BoardClient.target < BoardClient.board.slots.size()) {
+                int r = BoardClient.target;
+                while(r < BoardClient.board.slots.size() && !BoardClient.board.slots.get(r).getStack().isEmpty()) ++r;
+                --r;
+                if(r >= BoardClient.target) {
+                    MoveOperation operation = new MoveOperation(BoardClient.target, r, BoardClient.target + 1);
+                    if(operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
+                        BoardClient.sendOperation(operation);
+                    }
+                }
             }
         }
     }
@@ -47,7 +59,7 @@ public class MoveMode implements StaffModes.IMode {
         if(BoardClient.board != null) {
             int t = BoardClient.target, l = Math.min(BoardClient.left, BoardClient.right), r = Math.max(BoardClient.left, BoardClient.right), size = BoardClient.board.slots.size();
             if(0 <= t && t < size && 0 <= l && r < size && t + r - l < size) {
-                doRender = false; //thread safety :(   (i dont quite know these, but there could be no wrong)
+                doRender = false; //thread safety :(   (i don't quite know these, but there could be no wrong)
                 left = t;
                 right = t + r - l;
                 boolean flag = true;

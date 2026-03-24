@@ -1,5 +1,6 @@
 plugins {
     id 'com.github.johnrengelman.shadow'
+    //id 'org.jetbrains.kotlin.jvm' version '1.9.22'
 }
 
 loom {
@@ -41,6 +42,7 @@ dependencies {
     implementation(include("io.github.llamalad7:mixinextras-forge:0.2.0"))
     modImplementation ("at.petra-k.paucal:paucal-forge-${minecraft_version}:${paucal_version}")
     modImplementation ("at.petra-k.hexcasting:hexcasting-forge-${minecraft_version}:${hexcasting_version}")
+    //implementation 'thedarkcolour:kotlinforforge:4.10.0'
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')

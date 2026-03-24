@@ -2,11 +2,15 @@ package pub.pigeon.yggdyy.hexboard;
 
 import dev.architectury.event.events.client.ClientGuiEvent;
 import dev.architectury.event.events.client.ClientTickEvent;
+import dev.architectury.event.events.common.InteractionEvent;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
+import me.shedaniel.autoconfig.AutoConfig;
+import net.minecraft.client.gui.screens.Screen;
 import pub.pigeon.yggdyy.hexboard.content.ModBlocks;
 import pub.pigeon.yggdyy.hexboard.content.ModKeyMappings;
 import pub.pigeon.yggdyy.hexboard.content.board.BoardRenderer;
 import pub.pigeon.yggdyy.hexboard.content.interaction.BoardClient;
+import pub.pigeon.yggdyy.hexboard.content.interaction.staff.BoardStaffItem;
 import pub.pigeon.yggdyy.hexboard.content.interaction.staff.StaffModes;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.TypeblockRenderers;
 
@@ -20,5 +24,9 @@ public class HexBoardClient {
         ClientTickEvent.ClientLevel.CLIENT_LEVEL_POST.register(BoardClient::tick);
         ClientTickEvent.Client.CLIENT_POST.register(StaffModes::handleModeChange);
         ClientGuiEvent.RENDER_HUD.register(BoardClient::renderHUDInfo);
+        InteractionEvent.LEFT_CLICK_BLOCK.register(BoardStaffItem::attack);
+    }
+    public static Screen getConfigScreen(Screen parent) {
+        return AutoConfig.getConfigScreen(HexBoardConfig.Data.class, parent).get();
     }
 }
