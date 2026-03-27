@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CBC",
+    "BCB",
+    "EEE"
+  ],
+  "key": {
+    "E": {
+      "tag": "hexcasting:edified_logs"
+    },
+    "C": {
+      "item": "minecraft:calcite"
+    },
+    "B": {
+      "item": "minecraft:smooth_basalt"
+    }
+  },
+  "result": {
+    "item": "hexboard:board",
+    "count": 6
+  }
+}

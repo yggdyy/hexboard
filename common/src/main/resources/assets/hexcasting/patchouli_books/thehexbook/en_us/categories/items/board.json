@@ -1,6 +1,0 @@
-{
-  "name": "category.hexboard.default",
-  "icon": "hexboard:board",
-  "description": "category.hexboard.default.0",
-  "parent": "hexcasting:items"
-}

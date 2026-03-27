@@ -1,0 +1,94 @@
+{
+  "name": "block.hexboard.board",
+  "category": "hexcasting:items",
+  "icon": "hexboard:board",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.0"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "hexboard:board",
+      "text": "page.hexboard.board.1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.2"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.3"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "hexboard:quartz_typeblock",
+      "recipe2": "hexboard:wool_typeblock"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "hexboard:board_staff",
+      "text": "page.hexboard.board.4"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.5"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.6"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.7"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.8"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.9"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.10"
+    },
+    {
+      "type": "hexcasting:manual_pattern",
+      "op_id": "hexboard:patchouli_input_demo",
+      "input": "",
+      "output": "",
+      "text": "page.hexboard.board.11",
+      "patterns": [
+        {
+          "startdir": "NORTH_WEST",
+          "signature": "qqqqqed",
+          "q": -1,
+          "r": -1
+        }, {
+          "startdir": "NORTH_EAST",
+          "signature": "eeeeeqd",
+          "r": 1
+        }
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.12"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "hexboard:lapis_typeblock",
+      "recipe2": "hexboard:redstone_typeblock"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.13"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "page.hexboard.board.14"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 package pub.pigeon.yggdyy.hexboard;
 
+import dev.architectury.event.events.common.InteractionEvent;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.resources.ResourceLocation;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import pub.pigeon.yggdyy.hexboard.content.*;
 import pub.pigeon.yggdyy.hexboard.content.interaction.load.Loaders;
 import pub.pigeon.yggdyy.hexboard.content.interaction.operation.Operations;
+import pub.pigeon.yggdyy.hexboard.content.interaction.staff.BoardStaffItem;
 
 public final class HexBoard {
     public static final String MOD_ID = "hexboard";
@@ -25,6 +27,7 @@ public final class HexBoard {
         ModC2SHandlers.init();
         Operations.init();
         Loaders.init();
+        InteractionEvent.LEFT_CLICK_BLOCK.register(BoardStaffItem::attack);
     }
     public static ResourceLocation modLoc(String path) {
         return new ResourceLocation(MOD_ID, path);
