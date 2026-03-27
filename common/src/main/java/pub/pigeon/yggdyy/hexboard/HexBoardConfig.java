@@ -1,8 +1,12 @@
 package pub.pigeon.yggdyy.hexboard;
 
+import at.petrak.hexcasting.api.HexAPI;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HexBoardConfig{
     public static Data config = new Data();
@@ -48,6 +52,12 @@ public class HexBoardConfig{
         @ConfigEntry.Category(value = "hud")
         @ConfigEntry.ColorPicker
         public int hudInfoWoolTypeblockColor = 0xFFFFFF;
+        @ConfigEntry.Category(value = "patchouli")
+        public List<String> patchouliSearchCategories = new ArrayList<>(List.of(
+                HexAPI.modLoc("patterns").toString(),
+                HexAPI.modLoc("patterns/spells").toString(),
+                HexAPI.modLoc("patterns/great_spells").toString()
+        ));
         @ConfigEntry.Category(value = "resolve")
         public int maxResolvedIota = 2048;
     }

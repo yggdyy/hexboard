@@ -38,6 +38,8 @@
   "text.autoconfig.hexboard.option.hudInfoTargetIndexColor": "The color of board HUD's \"Current Target's Index\"",
   "text.autoconfig.hexboard.option.hudInfoQuartzTypeblockColor": "The color of board HUD's \"Quartz Type Block\"",
   "text.autoconfig.hexboard.option.hudInfoWoolTypeblockColor": "The color of board HUD's \"Wool Type Block\"",
+  "text.autoconfig.hexboard.category.patchouli": "Hex Notebook Settings",
+  "text.autoconfig.hexboard.option.patchouliSearchCategories": "Categories to search patterns",
   "text.autoconfig.hexboard.category.resolve": "Resolve Settings",
   "text.autoconfig.hexboard.option.maxResolvedIota": "The max count of iota to resolve or literal resolve",
   "category.hexboard.default": "Hex Board",

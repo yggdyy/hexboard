@@ -38,6 +38,8 @@
   "text.autoconfig.hexboard.option.hudInfoTargetIndexColor": "排字版HUD\"当前目标索引\"的颜色",
   "text.autoconfig.hexboard.option.hudInfoQuartzTypeblockColor": "排字版HUD\"石英活字\"的颜色",
   "text.autoconfig.hexboard.option.hudInfoWoolTypeblockColor": "排字版HUD\"羊毛活字\"的颜色",
+  "text.autoconfig.hexboard.category.patchouli": "咒术笔记设置",
+  "text.autoconfig.hexboard.option.patchouliSearchCategories": "查找图案的手册类别范围",
   "text.autoconfig.hexboard.category.resolve": "解析设置",
   "text.autoconfig.hexboard.option.maxResolvedIota": "解析或字面解析的最大Iota数量",
   "category.hexboard.default": "HexBoard",

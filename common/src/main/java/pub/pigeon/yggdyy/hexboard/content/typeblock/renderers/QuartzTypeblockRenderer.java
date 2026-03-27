@@ -8,11 +8,10 @@ import at.petrak.hexcasting.api.casting.math.HexPattern;
 import at.petrak.hexcasting.client.render.PatternColors;
 import at.petrak.hexcasting.client.render.PatternRenderer;
 import at.petrak.hexcasting.client.render.WorldlyPatternRenderHelpers;
-import at.petrak.hexcasting.common.lib.hex.HexActions;
 import at.petrak.hexcasting.common.lib.hex.HexIotaTypes;
-import com.google.gson.JsonObject;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -23,7 +22,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
@@ -35,24 +33,15 @@ import pub.pigeon.yggdyy.hexboard.content.board.BoardBlockEntity;
 import pub.pigeon.yggdyy.hexboard.content.interaction.BoardClient;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.TypeblockRenderers;
 import pub.pigeon.yggdyy.hexboard.content.typeblock.items.QuartzTypeblockItem;
-import pub.pigeon.yggdyy.hexboard.util.ItemStackUtil;
-import vazkii.patchouli.api.PatchouliAPI;
-import vazkii.patchouli.client.book.BookCategory;
-import vazkii.patchouli.client.book.BookEntry;
-import vazkii.patchouli.client.book.BookPage;
+import pub.pigeon.yggdyy.hexboard.util.PatternLookUpUtil;
 import vazkii.patchouli.client.book.ClientBookRegistry;
-import vazkii.patchouli.common.book.Book;
-import vazkii.patchouli.common.book.BookRegistry;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 public class QuartzTypeblockRenderer implements TypeblockRenderers.IRenderer {
     public static final ResourceLocation MODEL_ID = HexBoard.modLoc("typeblock/quartz");
-    public static final List<ResourceLocation> FAVOUR_CATEGORY = new ArrayList<>(List.of(
-            HexAPI.modLoc("patterns"),
-            HexAPI.modLoc("patterns/spells"),
-            HexAPI.modLoc("patterns/great_spells")
-    ));
     public Cache cache = null;
     @Override
     public void renderOnBoard(ItemStack itemStack, BoardBlockEntity entity, float f, PoseStack stack, MultiBufferSource buffer, int light, int overlay, BlockEntityRendererProvider.Context context) {
@@ -105,46 +94,33 @@ public class QuartzTypeblockRenderer implements TypeblockRenderers.IRenderer {
                     }
                     graphics.drawString(Minecraft.getInstance().font, name, BoardClient.getHUDX(), BoardClient.getHUDY() + 9 * HexBoardConfig.config.hudLineHeight, 0xFF_000000 | HexBoardConfig.config.hudInfoQuartzTypeblockColor);
                 } else {
+                    ResourceLocation pid = null;
                     Component name = null;
                     ResourceLocation entry = null;
                     int pageI = 0;
-                    Optional<Map.Entry<ResourceKey<ActionRegistryEntry>, ActionRegistryEntry> > patEntryOpt = HexActions.REGISTRY.entrySet().stream().filter(e -> pat.anglesSignature().equals(e.getValue().prototype().anglesSignature())).findAny();
-                    if(patEntryOpt.isPresent()) {
-                        name = Component.translatable("hexcasting.action." + patEntryOpt.get().getKey().location());
-                        Player player = Minecraft.getInstance().player;
-                        if(player != null && ItemStackUtil.isPlayerHas(player, PatchouliAPI.get().getBookStack(HexAPI.modLoc("thehexbook")))) {
-                            Book book = BookRegistry.INSTANCE.books.get(HexAPI.modLoc("thehexbook"));
-                            if (book != null) {
-                                boolean flag = false;
-                                for (ResourceLocation cid : FAVOUR_CATEGORY) {
-                                    BookCategory category = book.getContents().categories.get(cid);
-                                    if (category != null) {
-                                        for (BookEntry e : category.getEntries()) {
-                                            List<BookPage> pages = e.getPages();
-                                            for (int i = 0; i < pages.size(); ++i) {
-                                                BookPage p = pages.get(i);
-                                                JsonObject root = p.sourceObject;
-                                                try {
-                                                    if (root.get("op_id").getAsString().equals(patEntryOpt.get().getKey().location().toString())) {
-                                                        flag = true;
-                                                        entry = e.getId();
-                                                        pageI = i;
-                                                        break;
-                                                    }
-                                                } catch (Exception ignored) {
-
-                                                }
-                                            }
-                                            if (flag) {
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    if (flag) {
-                                        break;
-                                    }
-                                }
-                            }
+                    Optional<Map.Entry<ResourceKey<ActionRegistryEntry>, ActionRegistryEntry>> common = PatternLookUpUtil.lookUpIdCommon(pat);
+                    if(common.isPresent()) {
+                        pid = common.get().getKey().location();
+                        name = Component.translatable("hexcasting.action." + pid);
+                    } else {
+                        Optional<Map.Entry<ResourceKey<ActionRegistryEntry>, ActionRegistryEntry> > perWorld = PatternLookUpUtil.lookUpIdPerWorld(pat);
+                        if(perWorld.isPresent()) {
+                            pid = perWorld.get().getKey().location();
+                            name = Component.translatable("hexcasting.action." + pid);
+                        }
+                    }
+                    if(pid != null) {
+                        Pair<Optional<ResourceLocation>, Optional<Integer>> idPage = PatternLookUpUtil.lookUpIdPage(pid);
+                        if(idPage.getFirst().isPresent() && idPage.getSecond().isPresent()) {
+                            entry = idPage.getFirst().get();
+                            pageI = idPage.getSecond().get();
+                        }
+                    }
+                    if(entry == null) {
+                        Pair<Optional<ResourceLocation>, Optional<Integer>> patPage = PatternLookUpUtil.lookUpPatternPage(pat);
+                        if(patPage.getFirst().isPresent() && patPage.getSecond().isPresent()) {
+                            entry = patPage.getFirst().get();
+                            pageI = patPage.getSecond().get();
                         }
                     }
                     cache = new Cache(itemStack, name, entry, pageI);
