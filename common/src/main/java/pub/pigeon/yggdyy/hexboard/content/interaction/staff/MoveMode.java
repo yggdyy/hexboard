@@ -33,8 +33,12 @@ public class MoveMode implements StaffModes.IMode {
                 MoveOperation operation = new MoveOperation(BoardClient.left, BoardClient.right, BoardClient.target);
                 if (operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
                     BoardClient.sendOperation(operation);
-                    BoardClient.left = operation.target;
-                    BoardClient.right = operation.target + operation.right - operation.left;
+                    if (HexBoardConfig.config.resetSelectionAfterMove) {
+                        BoardClient.left = BoardClient.right = -1;
+                    } else {
+                        BoardClient.left = operation.target;
+                        BoardClient.right = operation.target + operation.right - operation.left;
+                    }
                 }
             } else if(BoardClient.target >= -1 && BoardClient.target < BoardClient.board.slots.size()) {
                 int r = BoardClient.target;

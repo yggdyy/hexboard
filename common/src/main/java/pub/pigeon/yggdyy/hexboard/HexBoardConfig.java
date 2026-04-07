@@ -58,7 +58,11 @@ public class HexBoardConfig{
                 HexAPI.modLoc("patterns/spells").toString(),
                 HexAPI.modLoc("patterns/great_spells").toString()
         ));
-        @ConfigEntry.Category(value = "resolve")
+        @ConfigEntry.Category(value = "operation")
         public int maxResolvedIota = 2048;
+        @ConfigEntry.Category(value = "operation")
+        public boolean resetSelectionAfterCopy = false;
+        @ConfigEntry.Category(value = "operation")
+        public boolean resetSelectionAfterMove = false;
     }
 }

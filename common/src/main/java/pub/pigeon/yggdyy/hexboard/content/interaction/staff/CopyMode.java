@@ -43,6 +43,9 @@ public class CopyMode implements StaffModes.IMode {
                 AddOperation operation = new AddOperation(toAdd, t);
                 if(operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
                     BoardClient.sendOperation(operation);
+                    if(HexBoardConfig.config.resetSelectionAfterCopy) {
+                        BoardClient.left = BoardClient.right = -1;
+                    }
                 }
             }
         }
