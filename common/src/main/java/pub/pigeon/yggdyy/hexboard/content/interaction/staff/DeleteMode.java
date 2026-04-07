@@ -7,6 +7,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
+import pub.pigeon.yggdyy.hexboard.HexBoardConfig;
 import pub.pigeon.yggdyy.hexboard.content.ModKeyMappings;
 import pub.pigeon.yggdyy.hexboard.content.interaction.BoardClient;
 import pub.pigeon.yggdyy.hexboard.content.interaction.operation.DeleteOperation;
@@ -41,7 +42,9 @@ public class DeleteMode implements StaffModes.IMode{
             }
             DeleteOperation operation = new DeleteOperation(toDelete, left);
             BoardClient.sendOperation(operation);
-            BoardClient.left = BoardClient.right = -1;
+            if(HexBoardConfig.config.resetSelectionAfterDelete) {
+                BoardClient.left = BoardClient.right = -1;
+            }
         }
     }
     @Override

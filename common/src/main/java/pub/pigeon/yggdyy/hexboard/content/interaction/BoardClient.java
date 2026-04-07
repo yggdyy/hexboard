@@ -56,7 +56,7 @@ public class BoardClient {
     }
     public static final IIdxHandler handleTarget = newIdx -> target = newIdx;
     public static final Map<Direction, List<AABB>> slotAreas = new HashMap<>();
-    public static int timer = 0, interval = 10;
+    public static int timer = 0, interval = 10, tickAfterOperation = 0;
     public static StaffModes.IMode staffMode = StaffModes.MODES.get(0);
     public static boolean doRenderHUD = false;
     public static void reset() {
@@ -141,6 +141,7 @@ public class BoardClient {
     }
     public static void tick(Level level) {
         ++timer;
+        ++tickAfterOperation;
         if(timer >= interval) {
             timer = 0;
             tickCritical(level);

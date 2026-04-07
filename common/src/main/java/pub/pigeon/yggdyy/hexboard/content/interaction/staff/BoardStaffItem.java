@@ -32,15 +32,18 @@ public class BoardStaffItem extends ItemFocus {
     }
     public static EventResult attack(Player player, InteractionHand hand, BlockPos pos, Direction face) {
         Level level = player.level();
-        if(player.getItemInHand(hand).is(ModItems.BOARD_STAFF.get()) && level.getBlockState(pos).is(ModBlocks.BOARD.get())) {
-            if(level.isClientSide) {
-                if (player.isShiftKeyDown() || (BoardClient.staffMode.getTriggerKey() != null && BoardClient.staffMode.getTriggerKey().isDown())) {
-                    BoardClient.staffMode.shiftLeftClick(hand);
-                } else {
-                    BoardClient.staffMode.leftClick(hand);
+        if(level.getBlockState(pos).is(ModBlocks.BOARD.get())) {
+            if (player.getItemInHand(hand).is(ModItems.BOARD_STAFF.get())) {
+                if (level.isClientSide && BoardClient.tickAfterOperation > 1) {
+                    BoardClient.tickAfterOperation = 0;
+                    if (player.isShiftKeyDown() || (BoardClient.staffMode.getTriggerKey() != null && BoardClient.staffMode.getTriggerKey().isDown())) {
+                        BoardClient.staffMode.shiftLeftClick(hand);
+                    } else {
+                        BoardClient.staffMode.leftClick(hand);
+                    }
                 }
+                return EventResult.interrupt(false);
             }
-            return EventResult.interrupt(false);
         }
         return EventResult.pass();
     }

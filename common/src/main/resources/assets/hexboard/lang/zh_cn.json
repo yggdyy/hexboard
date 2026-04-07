@@ -44,6 +44,8 @@
   "text.autoconfig.hexboard.option.maxResolvedIota": "解析或字面解析的最大Iota数量",
   "text.autoconfig.hexboard.option.resetSelectionAfterCopy": "是否在复制模式操作后重置选区",
   "text.autoconfig.hexboard.option.resetSelectionAfterMove": "是否在移动模式操作后重置选区",
+  "text.autoconfig.hexboard.option.resetSelectionAfterDelete": "是否在删除模式操作后重置选区",
+  "text.autoconfig.hexboard.option.resetSelectionAfterResolve": "是否在（字面）解析模式操作后重置选区",
   "category.hexboard.default": "HexBoard",
   "key.hexboard.refer_patchouli": "查阅帕秋莉手册",
   "key.hexboard.staffmodeadd": "添加",

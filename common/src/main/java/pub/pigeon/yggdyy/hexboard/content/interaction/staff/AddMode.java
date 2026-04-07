@@ -11,6 +11,7 @@ import pub.pigeon.yggdyy.hexboard.content.ModItems;
 import pub.pigeon.yggdyy.hexboard.content.ModKeyMappings;
 import pub.pigeon.yggdyy.hexboard.content.interaction.BoardClient;
 import pub.pigeon.yggdyy.hexboard.content.interaction.operation.AddOperation;
+import pub.pigeon.yggdyy.hexboard.content.interaction.operation.ModifyOperation;
 import pub.pigeon.yggdyy.hexboard.content.interaction.operation.Operation;
 
 import java.util.List;
@@ -21,14 +22,24 @@ public class AddMode implements StaffModes.IMode{
     public static final Component DISPLAY = Component.translatable("staffmode.hexboard.add");
     @Override
     public void rightClick(InteractionHand hand) {
-        if(BoardClient.target > -1 && BoardClient.board != null) {
+        if(BoardClient.board != null && BoardClient.target > -1 && BoardClient.target < BoardClient.board.slots.size()) {
             if(screen == null) {
                 screen = new SinglePatternScreen((scr, pat) -> {
-                    ItemStack stack = new ItemStack(ModItems.QUARTZ_TYPEBLOCK.get());
-                    ModItems.QUARTZ_TYPEBLOCK.get().writeDatum(stack, new PatternIota(pat));
-                    AddOperation operation = new AddOperation(List.of(stack), BoardClient.target);
-                    if(operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
-                        BoardClient.sendOperation(operation);
+                    if(BoardClient.board != null && BoardClient.target > -1 && BoardClient.target < BoardClient.board.slots.size()) {
+                        ItemStack toDelete = BoardClient.board.slots.get(BoardClient.target).getStack().copy();
+                        ItemStack toAdd = new ItemStack(ModItems.QUARTZ_TYPEBLOCK.get());
+                        ModItems.QUARTZ_TYPEBLOCK.get().writeDatum(toAdd, new PatternIota(pat));
+                        if(toDelete.isEmpty()) {
+                            AddOperation operation = new AddOperation(List.of(toAdd), BoardClient.target);
+                            if (operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
+                                BoardClient.sendOperation(operation);
+                            }
+                        } else {
+                            ModifyOperation operation = new ModifyOperation(toDelete, toAdd, BoardClient.target);
+                            if(operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
+                                BoardClient.sendOperation(operation);
+                            }
+                        }
                     }
                     scr.onClose();
                 }, scr -> {

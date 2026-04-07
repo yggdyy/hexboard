@@ -64,5 +64,9 @@ public class HexBoardConfig{
         public boolean resetSelectionAfterCopy = false;
         @ConfigEntry.Category(value = "operation")
         public boolean resetSelectionAfterMove = false;
+        @ConfigEntry.Category(value = "operation")
+        public boolean resetSelectionAfterDelete = true;
+        @ConfigEntry.Category(value = "operation")
+        public boolean resetSelectionAfterResolve = false;
     }
 }

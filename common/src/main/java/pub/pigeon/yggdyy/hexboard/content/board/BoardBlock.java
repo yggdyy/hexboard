@@ -1,7 +1,10 @@
 package pub.pigeon.yggdyy.hexboard.content.board;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -13,12 +16,18 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pub.pigeon.yggdyy.hexboard.content.interaction.BoardClient;
+import pub.pigeon.yggdyy.hexboard.content.interaction.operation.DeleteOperation;
+import pub.pigeon.yggdyy.hexboard.content.interaction.operation.Operation;
+
+import java.util.List;
 
 public class BoardBlock extends HorizontalDirectionalBlock implements EntityBlock {
     public BoardBlock(Properties properties) {
@@ -64,5 +73,21 @@ public class BoardBlock extends HorizontalDirectionalBlock implements EntityBloc
             }
             super.onRemove(blockState, level, blockPos, blockState2, bl);
         }
+    }
+    @Override
+    public @NotNull InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+        if(level.isClientSide && player.getItemInHand(interactionHand).isEmpty()) {
+            if(BoardClient.board != null && BoardClient.target >= 0 && BoardClient.target < BoardClient.board.slots.size()) {
+                ItemStack stack = BoardClient.board.slots.get(BoardClient.target).getStack();
+                if(!stack.isEmpty()) {
+                    DeleteOperation operation = new DeleteOperation(List.of(stack), BoardClient.target);
+                    if(operation.operate(BoardClient.board, player, true) == Operation.OperateResult.SUCCESSFUL) {
+                        BoardClient.sendOperation(operation);
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+            }
+        }
+        return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
     }
 }

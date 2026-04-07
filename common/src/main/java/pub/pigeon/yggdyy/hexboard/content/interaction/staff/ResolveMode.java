@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
+import pub.pigeon.yggdyy.hexboard.HexBoardConfig;
 import pub.pigeon.yggdyy.hexboard.content.ModKeyMappings;
 import pub.pigeon.yggdyy.hexboard.content.interaction.BoardClient;
 import pub.pigeon.yggdyy.hexboard.content.interaction.operation.Operation;
@@ -30,6 +31,9 @@ public class ResolveMode implements StaffModes.IMode {
             ResolveOperation operation = new ResolveOperation(BoardClient.left, BoardClient.right, literal);
             if(operation.operate(BoardClient.board, Minecraft.getInstance().player, true) == Operation.OperateResult.SUCCESSFUL) {
                 BoardClient.sendOperation(operation);
+                if(HexBoardConfig.config.resetSelectionAfterResolve) {
+                    BoardClient.left = BoardClient.right = -1;
+                }
             }
         }
     }

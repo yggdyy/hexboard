@@ -18,5 +18,6 @@ public class Operations {
         register(MoveOperation.TYPE);
         register(ResolveOperation.TYPE);
         register(LoadOperation.TYPE);
+        register(ModifyOperation.TYPE);
     }
 }
